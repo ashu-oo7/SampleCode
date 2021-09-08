@@ -10,11 +10,13 @@ int main(){
 	int n = s.length();
 	map<char,char> mp;
 	mp['{'] = '}'; mp['('] = ')'; mp['[']=']';
+	vector<char> op = {'{','[','('};
+	vector<char> cl = {'}',']',')'};
 	bool success = true;
 	for(int i=0;i<n;i++){
-		if(s[i] == '{' || s[i] == '[' || s[i] == '('){
+		if(find(op.begin(),op.end(),s[i]) != op.end()){
 			st.push(i);
-		}else if(s[i] == '}' || s[i] == ']' || s[i] == ')'){
+		}else if(find(cl.begin(),cl.end(),s[i]) != op.end()){
 			if(!st.empty() and mp[s[st.top()]] == s[i]){
 				st.pop();
 			}else{
